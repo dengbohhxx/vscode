@@ -33,6 +33,10 @@ int main()
         size_t idx=distance(a.begin(),iter);
         cout<<a[idx]<<endl;
     }
-    
+     cout<<"***************"<<endl;
+    a.clear();
+    bool b=a.empty();
+    cout<<b<<endl;
+
     return 0;
 }

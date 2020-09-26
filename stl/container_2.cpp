@@ -44,5 +44,19 @@ int main()
     cout<<endl;
     cout<<"++++++++++++++++"<<endl;
 
+    list<int>::iterator first=a1.begin();
+    //list<int>::iterator last=a1.end();
+    //while(first!=last)
+    while(first!=a1.end())
+    {
+        a1.insert(first,1000);
+        first++;
+    }
+    for(list<int>::iterator iter=a1.begin();iter!=a1.end();iter++)
+    {
+        cout<<*iter<<" ";
+    }
+    cout<<endl;
+    cout<<"++++++++++++++++"<<endl;
     return 0;
 }

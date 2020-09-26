@@ -23,19 +23,13 @@ int main()
     print(vec);
     vec.clear();
     */
-   /*
+   
     while(getline(cin,s))
     {
         vec.push_back(s);
     }
+    cout<<"-----------------------"<<endl;
     print(vec);
-    */
-   char a[100]={};
-   while(cin.getline(a,100))
-   {
-       string  b(a,a+100);
-       vec.push_back(b);
-   }
-   print(vec);
+    
     return 0;
 }

@@ -28,6 +28,7 @@ int main()
             cout<<vec[i]<<endl;
         }
     const vector<int> a(vec);
+    
     //a.push_back(1);
     for(vector<int>::const_iterator iter=a.begin();iter!=a.end();iter++)
     {

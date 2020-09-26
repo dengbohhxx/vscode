@@ -2,9 +2,8 @@
 #include <list>
 #include <vector>
 #include <string>
-#include<algorithm>
-
-using namespace std;
+#include <algorithm>
+using namespace std ;
 void print(vector<string>);
 int main()
 {
@@ -16,14 +15,14 @@ int main()
     print(vec);
     //vec.erase(vec.begin(),vec.begin()+2);
     //vec.erase(vec.begin());
-    vector<string>::iterator iter=find(vec.begin(),vec.end(),"baidu");
-    if(iter!=vec.end())
+    vector<string>::iterator iter = find(vec.begin(), vec.end(), "baidu");
+    if (iter != vec.end())
         vec.erase(iter);
     else
     {
-        cout<<"don't find it"<<endl;
+        cout << "don't find it" << endl;
     }
-    
+
     print(vec);
     return 0;
 }

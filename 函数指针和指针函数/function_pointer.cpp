@@ -38,4 +38,5 @@ int main()
     (*p)(a,b);
     cout<<"a:"<<a<<" b:"<<b;
     return 0;
+    
 }

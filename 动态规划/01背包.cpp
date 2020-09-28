@@ -22,6 +22,8 @@ public:
             for(int j=1;j<cap+1;j++)
             {
                 if(j>=w[i])//如果承载能力j大于w[i]
+                ////选择第i件物品，前i-1件物品重量要小于等于j-w[i]
+                //不选第i件物品，前i-1件物品重量要小于等于j
                 dp[i][j]=max(dp[i-1][j],dp[i-1][j-w[i]]+v[i]);
                 else//如果承载能力小于w[i]，那么dp[i][j]=dp[i-1][j]
                 dp[i][j]=dp[i-1][j];

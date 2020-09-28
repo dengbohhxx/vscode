@@ -14,7 +14,7 @@ int main()
     {
         cout<<"not find!!!"<<endl;
     }
-    string name("r2d3");
+    string name("r2d3dfsdfsdfsd55665");
     string  num("0123456789");
     string::size_type pos=0;
     while((pos=name.find_first_of(num,pos))!=string::npos)

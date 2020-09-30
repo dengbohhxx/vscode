@@ -48,7 +48,7 @@ int main()
     //插入行列
     insert_row=vec[6];
     insert_column=vec[7];
-    if(insert_row<=m-1)
+    if(insert_row<m&&m<9)
     {
         cout<<"0"<<endl;
     }
@@ -56,7 +56,7 @@ int main()
     {
         cout<<"-1"<<endl;
     }
-    if(insert_column<=n-1)
+    if(insert_column<n&&n<9)
     {
         cout<<"0"<<endl;
     }

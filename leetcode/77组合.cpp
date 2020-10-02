@@ -11,12 +11,7 @@ public:
         {
             a[xth]=i;
             fun(n,k,xth+1,i+1,a,vec);
-            
         }
-        
-        
-        
-        
     }
     vector<vector<int>> combine(int n, int k) {
         vector<int> a(k);

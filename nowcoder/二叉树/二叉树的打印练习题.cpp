@@ -31,6 +31,7 @@ public:
 				if (current->right != NULL)
 					q.push(current->right);
 			}
+			
 			output.push_back(row);
 			row.clear();
 		}

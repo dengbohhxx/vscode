@@ -10,7 +10,7 @@ public:
             else if(arr[mid]>arr[mid-1])
                right=mid;
             else if(arr[mid]>arr[mid+1])
-               left=mid;
+               left=mid;//边界问题，如果是mid+1，那么可能退化到 else if(arr[0]<arr[1])！！！！
             
                 
         }

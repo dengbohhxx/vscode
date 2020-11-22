@@ -18,3 +18,28 @@ public:
         return (int)res;
     }
 };
+/*
+class QuickPower {
+public:
+    int getPower(int k, int N) {
+        // write code here
+        if(N == 0)
+            return 1;
+        if(N == 1)
+            return k;
+         
+        if(N % 2 == 1)
+        {
+            long long res = getPower(k,N/2)% 1000000007;
+            //return (res * res * k) > INT_MAX ? (res * res * k) % 1000000007 : (res * res * k);
+            return res % 1000000007* res% 1000000007 * k % 1000000007;    
+        }
+        else
+        {
+            long long res = getPower(k,N/2)% 1000000007 ;
+            //return (res * res) > INT_MAX ? (res * res) % 1000000007 : (res * res);
+            return res% 1000000007 * res % 1000000007;
+        }
+    }
+};
+*/

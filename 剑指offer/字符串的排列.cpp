@@ -1,3 +1,4 @@
+/*
 class Solution {
 public:
     void dfs(string str,vector<string> &vec,vector<int> &use,string s,int p,int n)
@@ -36,5 +37,37 @@ public:
         vector<int> use(n,1);
         dfs(str,vec,use,s,0,n);
         return vec;
+    }
+};
+*/
+class Solution {
+public:
+    void perm(string str,int start,int end,set<string> &vec)
+    {
+        if(start==end)
+        {
+
+            vec.insert(str);
+            return;
+        }
+        else
+        {
+            for(int i=start;i<str.size();i++)
+            {
+                swap(str[start],str[i]);
+                perm(str,start+1,end,vec);
+                swap(str[start],str[i]);
+            }
+                
+        }
+    }
+    vector<string> Permutation(string str) {
+        set<string> vec;
+        vector<string> v;
+        int n=str.size();
+        if(n==0)
+            return v;
+        perm(str,0,n,vec);
+        return vector<string> (vec.begin(),vec.end());
     }
 };

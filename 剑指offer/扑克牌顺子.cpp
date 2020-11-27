@@ -1,33 +1,38 @@
-class Solution {
-public:
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
     bool IsContinuous( vector<int> numbers ) {
         int size=numbers.size();
         if(size<5)
             return false;
         sort(numbers.begin(),numbers.end());
-      
-        int countzero=0;
+        int czero=0;
         for(int i=0;i<size;i++)
         {
             if(numbers[i]==0)
-                countzero++;
+                czero++;
         }
-        if(countzero==size-1)
-            return true;
-          for(int i=countzero+1;i<size;i++)
+        for(int i=czero+1;i<size;i++)
         {
             if(numbers[i]==numbers[i-1])
                 return false;
         }
-       int countkongxi=0;
-        for(int i=countzero+1;i<size;i++)
+        int cgap=0;
+        for(int i=czero+1;i<size;i++)
         {
             if(numbers[i]-numbers[i-1]!=1)
-                countkongxi+=numbers[i]-numbers[i-1]-1;
+                cgap+=numbers[i]-numbers[i-1]-1;
         }
-        if(countkongxi==countzero)
+        if(cgap<=czero)
             return true;
         else
             return false;
     }
-};
+int main()
+{
+    int a[]={0,3,2,6,4};
+    vector<int> vec(a,a+5);
+    bool res=IsContinuous(vec);
+    cout<<res<<endl;
+}

@@ -1,101 +1,118 @@
-class Solution {
-public:
-    /**
-     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
-     * 返回表达式的值
-     * @param s string字符串 待计算的表达式
-     * @return int整型
-     */
-    int solve(string s) {
-        // write code here
-        if(s.empty())
-            return -1;
-        changes(s);
-        for(int i=0;i<s.size();i++)
+#include <iostream>
+#include <string>
+#include <vector>
+#include<stack>
+using namespace std;
+int prio(string op)
+{
+    int priority = 0;
+    if (op == "*" || op == "/")
+        priority = 2;
+    if (op == "+" || op == "-")
+        priority = 1;
+    if (op == "(")
+        priority = 0;
+    return priority;
+}
+vector<string>  trans(string s1)
+{
+    vector<string> s;
+    for(int i=0;i<s1.size();i++)
+    {
+        string ss(1,s1[i]);
+        s.push_back(ss);
+    }
+    stack<string> sta;
+    vector<string> str;
+    for (int i = 0; i < s.size(); i++)
+    {
+        if (s[i] >= "0" && s[i] <= "9")
         {
-            
-            if(s[i]<='9'&&s[i]>='0')
+            int j=i;
+            string s1;
+            while(s[j]>="0"&&s[j]<="9"&&j<s.size())
             {
-                int j=i;
-                int temp=0;//临时存储数值
-                while(s[j]<='9'&&s[j]>='0'&&j<s.size())
+                s1+=s[j];
+                j++;
+            }
+            str.push_back(s1);
+            i=j-1;
+
+        }
+        else
+        {
+            if (sta.empty() || s[i] == "(")
                 {
-                    temp=temp*10+s[j]-'0';
-                    j++;
+                sta.push(s[i]);
                 }
-                num.push(temp);
-                i=j-1;
+            else if (s[i] == ")")
+            {
+                while (sta.top() != "(")
+                {
+                    str .push_back( sta.top());
+                    sta.pop();
+                }
+                sta.pop();
             }
             else
             {
-                if(s[i]=='('||sig.empty())//符号栈为空或者s[i]='('直接push
+                while ((prio(s[i])) <= prio(sta.top()))
                 {
-                    sig.push(s[i]);
+                    str .push_back(sta.top());
+                    sta.pop();
+                    if (sta.empty())
+                        break;
                 }
-                else 
-                {
-                    if(s[i]=='+'||s[i]=='-')
-                    {
-                        while(!sig.empty()&&sig.top()!='(')
-                            calc();
-                        sig.push(s[i]);
-                    }
-                    if(s[i]=='*'||s[i]=='/')
-                    {
-                        while(!sig.empty()&&(sig.top()=='*'||sig.top()=='/'))
-                            calc();
-                        sig.push(s[i]);
-                    }
-                    if(s[i]==')')
-                    {
-                        while(!sig.empty()&&sig.top()!='(')
-                            calc();
-                        sig.pop();
-                    }
-                }
+                sta.push(s[i]);
             }
         }
-        while(!sig.empty())
-            calc();
-        int res=num.top();
-        return res;
     }
-    private:
-    stack<int> num;
-    stack<char> sig;
-    int com(int a,int b,char c)//符号运算
+    while (!sta.empty())
     {
-        switch(c)
+        str .push_back( sta.top());
+        sta.pop();
+    }
+    return str;
+}
+int evalrpn(vector<string> s)
+{
+    stack<int> sta;
+    for (int i = 0; i < s.size(); i++)
+    {
+        if (s[i] == "+" || s[i] == "-" || s[i] == "*"|| s[i] == "/")
         {
-            case '+':return a+b;
-            case '-':return a-b;
-            case '*':return a*b;
-            case '/':if(b!=0) return a/b;
+            int num1 = sta.top();
+            sta.pop();
+            int num2 = sta.top();
+            sta.pop();
+            if (s[i] == "+")
+                sta.push(num2 + num1);
+            if (s[i] == "-")
+                sta.push(num2 - num1);
+            if (s[i] == "*")
+                sta.push(num2 * num1);
+            if (s[i] == "/")
+                sta.push(num2 / num1);
         }
-        return -1;
-    }
-    void calc()//计算
-    {
-        int b=num.top();
-        num.pop();
-        int a=num.top();
-        num.pop();
-        char c=sig.top();
-        sig.pop();
-        num.push(com(a,b,c));
-    }
-    void changes(string s)//负号处理，在负号前加0
-    {
-        for(int i=0;i<s.size();i++)
+        else
         {
-            if(s[i]='-')
-            {
-                if(i==0)
-                    s.insert(i,"0");
-                if(i>0&&s[i-1]=='(')
-                    s.insert(i,"0");
-            }
+            sta.push(stoi(s[i]));
         }
-        return ;
     }
-};
+    int res = sta.top();
+    sta.pop();
+    return res;
+}
+int solve(string s)
+{
+    // write code here
+   auto str = trans(s);
+    return evalrpn(str);
+}
+int main()
+{
+    string str("100+100");
+    int a=solve(str);
+    cout<<a<<endl;
+    return 0;
+}

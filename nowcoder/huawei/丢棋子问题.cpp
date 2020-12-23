@@ -37,6 +37,23 @@ public:
         return dp[N][K];
     }
 };
+    int help(int n,int k)
+    {
+        if(n==0)
+            return 0;
+        if(k==1)
+            return n;
+        int min1=INT_MAX;
+        for(int i=1;i<=n;i++)
+            min1=min(min1,max(help(i-1,k-1),help(n-i,k)));
+        return min1+1;
+    }
+    int solve(int n, int k) {
+        // write code here
+           if(n<1||k<1)
+               return 0;
+        return help(n,k);
+    }
 */
 class Solution {
 public:
@@ -47,9 +64,10 @@ public:
      * @param k int整型 棋子数
      * @return int整型
      */
+
     int solve(int n, int k) {
         // write code here
-           if(n < 1)
+        if(n < 1)
             return 0;
         if(k == 1)
             return n;
@@ -68,5 +86,6 @@ public:
                 f[i] += f[i-1] + 1;
         }
         return cnt;
+        
     }
 };

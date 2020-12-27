@@ -44,7 +44,7 @@ class Disjointset//基础版本
         vector<int> parent;
 };
 */
-//路径压缩版本
+
 class Disjointset
 {
     public:

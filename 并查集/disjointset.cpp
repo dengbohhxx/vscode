@@ -54,22 +54,17 @@ class Disjointset
         for(int i=0;i<size;i++)
         {
             parent.push_back(vec[i]);
+            rank.push_back(1);
         }
+        this->count=size;
     }
     int find(int x)//查找
     {
         //return parent[x]==x?x:find(parent[x]);
-        int son=x;
-        int temp=0;
-        while(x!=parent[x])
-        {
-            x=parent[x];
-        }
-        while(son!=x)
-        {
-            temp=parent[son];
-            parent[son]=x;
-            son=temp;
+        while (parent[x] != x) {
+            // 进行路径压缩
+            parent[x] = parent[parent[x]];
+            x = parent[x];
         }
         return x;
     }
@@ -80,18 +75,35 @@ class Disjointset
         if(p1==p2)
             return ;
         else
-        {
-            parent[p1]=p2;
+        { // 小树接到大树下面，较平衡
+            if(rank[p1]>rank[p2])
+            {
+                parent[p2]=p1;
+                rank[p1]+=rank[p2];
+            }
+            else
+            {
+                parent[p1]=p2;
+                rank[p2]+=rank[p1];
+            }
+            
         }
     }
 
-    bool is_same(int e1,int e2)
+    bool connected (int e1,int e2)
     {
         return find(e1)==find(e2);
     }
+    
+    int counted()
+    {
+        return  count;
+    }
 
     private:
-        vector<int> parent;
+        vector<int> parent; //存储一棵树
+        vector<int> rank;//// 记录树的“重量”
+        int count;//连通分量个数
 };
 int main()
 {

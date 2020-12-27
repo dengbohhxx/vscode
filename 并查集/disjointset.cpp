@@ -61,10 +61,17 @@ class Disjointset
     int find(int x)//查找
     {
         //return parent[x]==x?x:find(parent[x]);
-        while (parent[x] != x) {
-            // 进行路径压缩
-            parent[x] = parent[parent[x]];
-            x = parent[x];
+        int son=x;
+        int temp=0;
+        while(x!=parent[x])
+        {
+            x=parent[x];
+        }
+        while(son!=x)
+        {
+            temp=parent[son];
+            parent[son]=x;
+            son=temp;
         }
         return x;
     }

@@ -93,7 +93,7 @@ class Disjointset
                 parent[p1]=p2;
                 rank[p2]+=rank[p1];
             }
-            
+        count--;    
         }
     }
 

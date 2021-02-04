@@ -42,21 +42,15 @@ public:
     }
 };
  */
-
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-        if(head==NULL)
-            return NULL;
-        ListNode * pre=NULL;
-        ListNode * p=NULL;
-        while(head!=NULL)
-        {
-            p=head->next;
-            head->next=pre;
-            pre=head;
-            head=p;
-        }
-        return pre;
+       if(head==NULL||head->next==NULL)
+            return head;
+        ListNode * last=reverseList(head->next);
+        head->next->next=head;
+        head->next=NULL;
+        return last;
+
     }
 };

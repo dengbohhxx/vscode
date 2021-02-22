@@ -53,7 +53,7 @@ public:
 class Solution {
 public:
 //递归
-    bool traverse(ListNode * right,ListNode *left)
+    bool traverse(ListNode * right,ListNode *&left)
     {
         if(right==NULL)
             return true;

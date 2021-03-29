@@ -38,4 +38,4 @@ void post(Node *root,vector<int> &vec)
         post(root,vec);
         return vec;
     }
-};
+}；

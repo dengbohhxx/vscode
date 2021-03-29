@@ -8,7 +8,7 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  class Solution {
-public:
+public://头插法
     ListNode* reverseList(ListNode* head) {
         if(head==NULL)
             return NULL;
@@ -25,7 +25,7 @@ public:
     }
 };
 class Solution {
-public:
+public://尾插法
     ListNode* reverseList(ListNode* head) {
         if(head==NULL)
             return NULL;
@@ -37,13 +37,15 @@ public:
             head->next=pre;
             pre=head;
             head=p;
-        }
+        }fanzhuan
         return pre;
     }
 };
  */
+
 class Solution {
 public:
+//利用递归反转
     ListNode* reverseList(ListNode* head) {
        if(head==NULL||head->next==NULL)
             return head;
